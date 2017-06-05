@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
-#import "PMngrDelegate.h"
+
 
 @interface PlayerManager : NSObject
 
-@property (nonatomic, weak) id<PMngrDelegate> delegate;
 
 @property (nonatomic) NSMutableArray *players;
 @property (nonatomic) NSInteger currentIndex;
 
 
+-(void)Output:(Player *)player;
 -(void)createPlayers:(NSInteger)num;
 -(Player*)currentPlayer;
 -(BOOL)Roll;
-//-(void)Output;
+
 
 @end

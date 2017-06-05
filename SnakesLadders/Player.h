@@ -7,19 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PMngrDelegate.h"
-//#import "PlayerManager.h"
 
-@interface Player : NSObject <PMngrDelegate>
-//@interface Player : PlayerManager
+
+@interface Player : NSObject
 
 @property (nonatomic) NSNumber *currentSquare;
 @property (nonatomic) NSDictionary *gameLogic;
-@property (nonatomic) NSString *output;
 @property (nonatomic) BOOL gameOver;
 @property (nonatomic) NSString *name;
 
-//-(BOOL)Roll;
--(void)printRollResult:(NSNumber *)squarenum andWith:(NSNumber *)currentsquare for:(Player *)player;
+
+-(void)printRollResult:(NSNumber *)squarenum andWith:(NSNumber *)currentsquare;
+-(BOOL)Roll;
+-(void)Output;
 
 @end

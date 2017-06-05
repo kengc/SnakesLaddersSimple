@@ -35,16 +35,17 @@
     return self;
 }
 
--(BOOL)Roll:(Player *)player{
+-(BOOL)Roll{
     
     NSNumber *changeToSquare;
     
     NSNumber *squareNum = [NSNumber numberWithUnsignedInt:arc4random_uniform(6) + 1];
     //NSNumber *currentSquare = [NSNumber numberWithInteger:([self.currentSquare integerValue] + [squareNum integerValue])];
-    NSNumber *currentSquare = [NSNumber numberWithInteger:([player.currentSquare integerValue] + [squareNum integerValue])];
+    NSNumber *currentSquare = [NSNumber numberWithInteger:([self.currentSquare integerValue] + [squareNum integerValue])];
     
-    player.currentSquare = currentSquare;
-    [self printRollResult:squareNum andWith:currentSquare for:player];
+    self.currentSquare = currentSquare;
+    [self printRollResult:squareNum andWith:currentSquare];
+    
  
     self.currentSquare = currentSquare;
     
@@ -63,15 +64,15 @@
             if([currentSquare integerValue] < [changeToSquare integerValue])
             {
                NSLog(@"Stairway! Up you go");
-               NSLog(@"%@ jumped from %ld to %ld", player.name, [self.currentSquare integerValue], [changeToSquare integerValue]);
+               NSLog(@"%@ jumped from %ld to %ld", self.name, [self.currentSquare integerValue], [changeToSquare integerValue]);
                self.currentSquare = changeToSquare;
-               player.currentSquare = changeToSquare;
+               self.currentSquare = changeToSquare;
             } else
             {
                NSLog(@"Uh-oh a SNAKE! Down you go!");
-               NSLog(@"%@ jumped from %ld to %ld", player.name, [self.currentSquare integerValue], [changeToSquare integerValue]);
+               NSLog(@"%@ jumped from %ld to %ld", self.name, [self.currentSquare integerValue], [changeToSquare integerValue]);
                self.currentSquare = changeToSquare;
-               player.currentSquare = changeToSquare;
+               self.currentSquare = changeToSquare;
             }
         }
     }
@@ -79,18 +80,13 @@
 }
 
 -(void)Output{
-    //
+   NSLog(@"Congrats %@ you won Snakes & Ladders!", self.name);
 }
 
--(void)Output:(Player *)player{
-    
-}
-
--(void)printRollResult:(NSNumber *)squarenum andWith:(NSNumber *)currentsquare for:(Player *)player
+-(void)printRollResult:(NSNumber *)squarenum andWith:(NSNumber *)currentsquare
 {
-  NSLog(@"%@ rolled a:  %ld", player.name, [squarenum integerValue]);
-  //NSLog(@"%@ landed on: %ld", player.name, [currentsquare integerValue]);
-  NSLog(@"%@ landed on: %ld", player.name, [player.currentSquare integerValue]);
+  NSLog(@"%@ rolled a:  %ld", self.name, [squarenum integerValue]);
+  NSLog(@"%@ landed on: %ld", self.name, [self.currentSquare integerValue]);
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PlayerManager.h"
+#import "Player.h"
 
 @implementation PlayerManager
 
@@ -37,23 +38,22 @@
 -(BOOL)Roll{
    
     //call players roll
-    //Player *p = [self currentPlayer];
-    if ([self.delegate Roll:[self currentPlayer]]){
-        [self Output:[self currentPlayer]];
+    Player *p = [self currentPlayer];
+    if(p.Roll){
+        [self Output:p];
         return YES;
     }
+    
     self.currentIndex += 1;
     return NO;
 }
 
 -(void)Output:(Player *)player{
-    NSLog(@"Congrats %@ you won Snakes & Ladders!", player.name);
+    player.Output;
 }
 
 -(Player*)currentPlayer{
     
-//This method will return a Player* computed from the currentIndex.
-//To do this I would like you to use the modulus operator. currentIndex should just keep incrementing by 1 for each roll. The method currentPlayer will compute the array index using 3 things. The modulus operator, the currentIndex and the count of the players array.
     NSInteger arrayCount = self.players.count;
     NSNumber *playerIndex = [NSNumber numberWithInteger:self.currentIndex % arrayCount];
 //    NSLog(@"currentInex is: %li", (long)self.currentIndex);
@@ -67,31 +67,6 @@
         }
 
     }
-        //find the remainder of the divion
-        //NSLog(@"currentInex is: %li", (long)self.currentIndex);
-        //NSLog(@"modulo result is: %li", self.currentIndex % arrayCount);
-        //NSNumber *playerIndex = [NSNumber numberWithInteger:self.currentIndex % arrayCount];
-    
-    
-    
-//        switch ([playerIndex integerValue]) {
-//            case 0:{
-//                return [self.players objectAtIndex:[playerIndex integerValue]];
-//            }
-//                break;
-//            case 1:{
-//                return [self.players objectAtIndex:[playerIndex integerValue]];
-//            }
-//                break;
-//            case 2:{
-//                return [self.players objectAtIndex:[playerIndex integerValue]];
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-    
-   // }
     
     return nil;
 }
