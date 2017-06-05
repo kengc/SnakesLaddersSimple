@@ -21,6 +21,7 @@
 -(void)createPlayers:(NSInteger)num;
 -(Player*)currentPlayer;
 -(BOOL)Roll;
+-(NSString *)Score;
 
 
 @end

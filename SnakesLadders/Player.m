@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         _gameOver = NO;
-        _currentSquare = 0;
+        _currentSquare = [[NSNumber alloc] initWithInt:0];
         _gameLogic = [[NSDictionary alloc] initWithObjectsAndKeys:
     [NSNumber numberWithInt:14],[NSNumber numberWithInt:4],
     [NSNumber numberWithInt:31],[NSNumber numberWithInt:9],
@@ -77,6 +77,17 @@
         }
     }
     return NO;
+}
+
+-(NSString *)Score{
+    NSString *name = [[NSString alloc] init];
+    name = self.name;
+    NSString *score = [[NSString alloc] init];
+    score = [self.currentSquare stringValue];
+    NSString *append = [[NSString alloc] init];
+    append = [[name stringByAppendingString:@": "] stringByAppendingString:score];
+    
+    return append;
 }
 
 -(void)Output{

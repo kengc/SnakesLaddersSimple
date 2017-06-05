@@ -20,5 +20,6 @@
 -(void)printRollResult:(NSNumber *)squarenum andWith:(NSNumber *)currentsquare;
 -(BOOL)Roll;
 -(void)Output;
+-(NSString *)Score;
 
 @end

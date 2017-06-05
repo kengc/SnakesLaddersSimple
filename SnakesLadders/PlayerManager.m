@@ -39,28 +39,40 @@
    
     //call players roll
     Player *p = [self currentPlayer];
+
     if(p.Roll){
         [self Output:p];
         return YES;
     }
-    
+    NSString *score = [self Score];
+    NSLog(@"%@ ", score);
     self.currentIndex += 1;
     return NO;
 }
 
+-(NSString *)Score{
+    NSMutableString *score = [[NSMutableString alloc] init];
+    [score appendString:@"Score: "];
+    
+    for(Player *player in self.players){
+        [score appendString:[player Score]];
+        [score appendString:@", "];
+    }
+    return score;
+}
+
 -(void)Output:(Player *)player{
-    player.Output;
+    [player Output];
 }
 
 -(Player*)currentPlayer{
     
     NSInteger arrayCount = self.players.count;
     NSNumber *playerIndex = [NSNumber numberWithInteger:self.currentIndex % arrayCount];
+    
 //    NSLog(@"currentInex is: %li", (long)self.currentIndex);
 //    NSLog(@"modulo result is: %li", self.currentIndex % arrayCount);
     
-    
-    //for(Player *player in self.players){
     for(int i = 0; i < self.players.count; i++){
         if(i == [playerIndex integerValue]){
             return [self.players objectAtIndex:i];
